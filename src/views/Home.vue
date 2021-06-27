@@ -61,7 +61,7 @@
             class="input is-small"
             v-model="search"
             type="text"
-            placeholder="Tìm kiếm"
+            placeholder="Search"
           />
         </div>
         <div class="control">
