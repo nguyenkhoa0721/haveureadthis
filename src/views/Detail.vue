@@ -15,10 +15,10 @@
           <a :href="url" target="chart"><button class="button is-success is-fullwidth">🎯 Direct to</button></a>
         </div>
         <div class="block">
-          <strong>✒️ Auther: </strong>
+          <strong>✒️ Author: </strong>
           <div class="buttons are-small mt-3">
             <button class="button is-info is-small">
-              {{ auther }}
+              {{ author }}
             </button>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default {
       cate: [],
       type: "",
       lang: "",
-      auther: "",
+      author: "",
       title: "",
       abbr: "",
       url: "",
@@ -81,7 +81,7 @@ export default {
       })
       .then((res) => {
         this.title = res.data[0];
-        this.auther = res.data[1];
+        this.author = res.data[1];
         this.type = res.data[2];
         this.lang = res.data[3];
         this.url = res.data[4];

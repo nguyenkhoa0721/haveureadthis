@@ -84,7 +84,7 @@
                 <div class="content">
                   <strong>🟢 {{ item[1] }}</strong>
                   <br />
-                  <p class="has-text-grey">{{ "Auther: " + item[2] }}</p>
+                  <p class="has-text-grey">{{ "Author: " + item[2] }}</p>
                 </div>
               </div>
             </div>
