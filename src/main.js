@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios';
 
-Vue.use(VueAxios,axios);
+Vue.use(axios);
 axios.defaults.baseURL = 'http://api.haveyoureadthis.tech'
 axios.defaults.withCredentials = true;
 
