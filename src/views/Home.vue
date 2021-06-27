@@ -54,7 +54,7 @@
         </div>
       </section>
     </div>
-    <div class="column pt-5 px-5 mr-5">
+    <div class="column is-9 pt-5 px-5 mr-5">
       <div class="field is-grouped pb-3">
         <div class="control">
           <input
@@ -66,7 +66,7 @@
         </div>
         <div class="control">
           <button class="button is-small is-primary" v-on:click="get_list()">
-            Tìm kiếm
+            Search
             <main></main>
           </button>
         </div>
@@ -91,6 +91,65 @@
           </router-link>
         </div>
       </div>
+      <nav
+        class="pagination is-small"
+        role="navigation"
+        aria-label="pagination"
+      >
+        <a
+          class="pagination-previous"
+          title="This is the first page"
+          :disabled="curr_page == 1"
+          @click.prevent="curr_page == 1 ? (curr_page = 1) : (curr_page -= 1)"
+          >Previous</a
+        >
+        <a class="pagination-next" @click.prevent="curr_page += 1">Next page</a>
+        <ul class="pagination-list">
+          <li>
+            <a
+              :class="
+                curr_page == 1
+                  ? 'pagination-link is-current'
+                  : 'pagination-link'
+              "
+              @click.prevent="curr_page = 1"
+              aria-label="Page 1"
+              aria-current="page"
+              >1</a
+            >
+          </li>
+          <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+          </li>
+          <li>
+            <a
+              :class="
+                curr_page != 1
+                  ? 'pagination-link is-current'
+                  : 'pagination-link'
+              "
+              @click.prevent="
+                curr_page != 1 ? (curr_page = curr_page) : (curr_page = 2)
+              "
+              aria-label="Goto page 2"
+              >{{ curr_page == 1 ? 2 : curr_page }}</a
+            >
+          </li>
+          <li>
+            <a
+              class="pagination-link"
+              aria-label="Goto page 3"
+              @click.prevent="
+                curr_page != 1 ? (curr_page += 1) : (curr_page = 3)
+              "
+              >{{ curr_page == 1 ? 3 : curr_page + 1 }}</a
+            >
+          </li>
+          <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </template>
@@ -122,6 +181,7 @@ export default {
       filter_lang: [],
       search: "",
       title: [],
+      curr_page: 1,
     };
   },
   created() {
@@ -144,13 +204,15 @@ export default {
       this.axios
         .get("/get", {
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           params: {
             cate: cateq,
             type: typeq,
             lang: langq,
             search: this.search,
+            page: this.curr_page - 1,
+            limit: 20
           },
         })
         .then((res) => {
@@ -173,6 +235,7 @@ export default {
         arr.splice(index, 1);
       } else arr.push(value);
       this.search = "";
+      this.curr_page = 1;
       this.get_list();
     },
     reset() {
@@ -180,6 +243,13 @@ export default {
       this.filter_cate = [];
       this.filter_type = [];
       this.filter_lang = [];
+      this.curr_page = 1;
+      this.get_list();
+    },
+  },
+  watch: {
+    curr_page: function (n, o) {
+      console.log(this.curr_page)
       this.get_list();
     },
   },
