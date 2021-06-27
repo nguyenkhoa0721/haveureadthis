@@ -7,7 +7,7 @@ import VueAxios from 'vue-axios'
 
 
 
-axios.defaults.baseURL = 'http://api.haveyoureadthis.tech'
+axios.defaults.baseURL = 'https://api.haveyoureadthis.tech'
 axios.defaults.withCredentials = true;
 Vue.use(VueAxios, axios)
 
