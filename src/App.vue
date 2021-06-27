@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/" class='has-text-success'>🐸 Have U Read This</router-link> |
+      <router-link to="/" class='has-text-success'>🐸 Have U Read This Tech</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <hr/>
