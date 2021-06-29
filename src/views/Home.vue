@@ -166,11 +166,12 @@ export default {
     return {
       cate: [
         "programming-language",
-        "computer-vision-and-ai",
         "data-structure-and-algorithm",
+        "computer-vision-and-ai",
+        "nlp",
         "networking-and-hacking",
         "database-mangement",
-        "web-development",
+        "web-mobile",
         "computer-engineering",
         "soft-skill",
       ],
@@ -212,7 +213,7 @@ export default {
             lang: langq,
             search: this.search,
             page: this.curr_page - 1,
-            limit: 20
+            limit: 15,
           },
         })
         .then((res) => {
@@ -249,7 +250,7 @@ export default {
   },
   watch: {
     curr_page: function (n, o) {
-      console.log(this.curr_page)
+      console.log(this.curr_page);
       this.get_list();
     },
   },
