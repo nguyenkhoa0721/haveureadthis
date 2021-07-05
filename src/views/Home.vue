@@ -82,9 +82,11 @@
             <div class="card has-background-white-bis">
               <div class="card-content">
                 <div class="content">
-                  <strong>🟢 {{ item[1] }}</strong>
+                  <strong class="text-with-dots">🟢 {{ item[1] }}</strong>
                   <br />
-                  <p class="has-text-grey">{{ "Author: " + item[2] }}</p>
+                  <p class="has-text-grey text-with-dots">
+                    {{ "Author: " + item[2] }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -213,11 +215,14 @@ export default {
             lang: langq,
             search: this.search,
             page: this.curr_page - 1,
-            limit: 15,
+            limit: 12,
           },
         })
         .then((res) => {
           this.title = res.data;
+          for (let i in this.title) {
+            this.title[i][3] = false;
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -247,6 +252,14 @@ export default {
       this.curr_page = 1;
       this.get_list();
     },
+    mouseOver(index) {
+      this.title[index][3] = true;
+      console.log(this.title[index]);
+    },
+    mouseLeave(index) {
+      this.title[index][3] = false;
+      console.log(this.title[index]);
+    },
   },
   watch: {
     curr_page: function (n, o) {
@@ -257,4 +270,11 @@ export default {
 };
 </script>
 <style scoped>
+.text-with-dots {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
 </style>
